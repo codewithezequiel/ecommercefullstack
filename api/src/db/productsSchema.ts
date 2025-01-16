@@ -17,6 +17,13 @@ export const productsTable = pgTable("products", {
 });
 
 const rawCreateProductSchema = createInsertSchema(productsTable);
+
 export const createProductSchema = z.object({
   ...rawCreateProductSchema.shape,
 });
+
+export const updateProductSchema = z
+  .object({
+    ...rawCreateProductSchema.shape,
+  })
+  .partial();
