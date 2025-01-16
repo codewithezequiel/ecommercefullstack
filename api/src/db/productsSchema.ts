@@ -5,6 +5,8 @@ import {
   text,
   varchar,
 } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
 
 export const productsTable = pgTable("products", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -12,4 +14,9 @@ export const productsTable = pgTable("products", {
   description: text(),
   image: varchar({ length: 255 }),
   price: doublePrecision().notNull(),
+});
+
+const rawCreateProductSchema = createInsertSchema(productsTable);
+export const createProductSchema = z.object({
+  ...rawCreateProductSchema.shape,
 });
