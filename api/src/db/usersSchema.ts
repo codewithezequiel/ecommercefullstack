@@ -20,3 +20,9 @@ export const createUserSchema = z
     ...rawCreateUserSchema.shape,
   })
   .omit({ role: true });
+
+export const loginUserchema = z
+  .object({
+    ...rawCreateUserSchema.shape,
+  })
+  .pick({ email: true, password: true });
