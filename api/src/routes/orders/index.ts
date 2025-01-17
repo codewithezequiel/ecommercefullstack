@@ -5,13 +5,13 @@ import {
   getOrder,
   updateOrder,
 } from "./ordersController.js";
-import { validateData } from "../../middlewares/validationMiddleware";
+import { validateData } from "../../middlewares/validationMiddleware.js";
 import {
   createOrderSchema,
   createOrderWithItemsSchema,
   updateOrderSchema,
 } from "../../db/ordersSchema.js";
-import { verifyToken } from "../../middlewares/authMiddleware";
+import { verifyToken } from "../../middlewares/authMiddleware.js";
 
 const router = Router();
 

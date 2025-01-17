@@ -7,8 +7,8 @@ import {
 } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
-import { usersTable } from "./usersSchema";
-import { productsTable } from "./productsSchema";
+import { usersTable } from "./usersSchema.js";
+import { productsTable } from "./productsSchema.js";
 
 // One to Many Relationship (user to orders)
 export const ordersTable = pgTable("orders", {
@@ -42,6 +42,7 @@ export const createOrderSchema = z
     ...rawCreateOrderSchema.shape,
   })
   .omit({
+    // @ts-ignore
     id: true,
     userId: true,
     status: true,
@@ -51,6 +52,7 @@ export const createOrderSchema = z
 export const createOrderWithItemSchema = createInsertSchema(
   orderItemsTable
 ).omit({
+  // @ts-ignore
   id: true,
   orderId: true,
 });

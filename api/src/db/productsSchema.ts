@@ -23,6 +23,7 @@ export const createProductSchema = z
     ...rawCreateProductSchema.shape,
   })
   .omit({
+    // @ts-ignore
     id: true,
   });
 
