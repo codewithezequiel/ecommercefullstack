@@ -1,13 +1,21 @@
 import { Router } from "express";
-import { createOrder } from "./ordersController.js";
+import {
+  createOrder,
+  listOrders,
+  getOrder,
+  updateOrder,
+} from "./ordersController.js";
 import { validateData } from "../../middlewares/validationMiddleware";
 import {
   createOrderSchema,
   createOrderWithItemsSchema,
+  updateOrderSchema,
 } from "../../db/ordersSchema.js";
 import { verifyToken } from "../../middlewares/authMiddleware";
 
 const router = Router();
+
+router.get("/", verifyToken, listOrders);
 
 router.post(
   "/",
@@ -15,5 +23,8 @@ router.post(
   validateData(createOrderWithItemsSchema),
   createOrder
 );
+
+router.get("/:id", verifyToken, getOrder);
+router.put("/:id", verifyToken, validateData(updateOrderSchema), updateOrder);
 
 export default router;
