@@ -5,7 +5,7 @@ export function verifyToken(req: Request, res: Response, next: NextFunction) {
   const token = req.header("Authorization");
 
   if (!token) {
-    res.status(401).json({ error: "Access denied" });
+    res.status(401).json({ error: "Access denied ?" });
     return;
   }
 
@@ -18,9 +18,11 @@ export function verifyToken(req: Request, res: Response, next: NextFunction) {
     }
     // Attach to our request object the userId
     req.userId = decoded.userId;
+    console.log(req.userId);
+
     req.role = decoded.role;
 
-    console.log(decoded);
+    console.log("Hello World");
     next();
   } catch (error) {
     res.status(401).json({ error: "Access denied" });
@@ -31,7 +33,7 @@ export function verifySeller(req: Request, res: Response, next: NextFunction) {
   const role = req.role;
 
   if (role !== "seller") {
-    res.status(401).json({ error: "Access denied!" });
+    res.status(401).json({ error: "Access denied!?!" });
     return;
   }
 

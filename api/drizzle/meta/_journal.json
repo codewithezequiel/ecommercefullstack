@@ -29,6 +29,13 @@
       "when": 1736996522179,
       "tag": "0003_new_captain_stacy",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1737082944110,
+      "tag": "0004_ordinary_namora",
+      "breakpoints": true
     }
   ]
 }
